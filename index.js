@@ -46,9 +46,9 @@ const transporter1 = nodemailer.createTransport({
 app.post('/send-email', async (req, res) => {
   const { name, email, mobile, message } = req.body;
 
-  const formData = new FormData({ name, email, mobile, message });
+  // const formData = new FormData({ name, email, mobile, message });
   try {
-    await formData.save();
+    // await formData.save();
     console.log('Form data saved to MongoDB');
 
     const mailOptions1 = {
@@ -77,9 +77,9 @@ app.post('/send-email2', async (req, res) => {
   const { name, contact, message } = req.body;
   console.log(name, contact, message);
 
-  const formData = new NewFormData({ name, contact, message });
+  // const formData = new NewFormData({ name, contact, message });
   try {
-    await formData.save();
+    // await formData.save();
     console.log('Form data saved to MongoDB');
 
     const mailOptions = {
