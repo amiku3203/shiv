@@ -86,7 +86,7 @@ app.post('/send-email2', async (req, res) => {
       text: `Query Sent\nName: ${name}\nMobile: ${contact}\nMessage: ${message}`,
     };
 
-    transporter1.sendMail(mailOptions, (error, info) => {
+  await  transporter1.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error('Error sending email:', error);
         res.status(500).send('Error sending email');
