@@ -9,31 +9,31 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb+srv://biztoindia5:LkoskQrKJeTRxhiH@cluster0.mafatxg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-   );
+// mongoose.connect('mongodb+srv://biztoindia5:LkoskQrKJeTRxhiH@cluster0.mafatxg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+//    );
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', () => {
+//   console.log('Connected to MongoDB');
+// });
 
-const formSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  mobile: String,
-  message: String,
-});
+// const formSchema = new mongoose.Schema({
+//   name: String,
+//   email: String,
+//   mobile: String,
+//   message: String,
+// });
 
-const FormData = mongoose.model('FormData', formSchema);
+// const FormData = mongoose.model('FormData', formSchema);
 
-const formDataSchema = new mongoose.Schema({
-  name: String,
-  contact: String,
-  message: String,
-});
+// const formDataSchema = new mongoose.Schema({
+//   name: String,
+//   contact: String,
+//   message: String,
+// });
 
-const NewFormData = mongoose.model('NewFormData', formDataSchema);
+// const NewFormData = mongoose.model('NewFormData', formDataSchema);
 
 const transporter1 = nodemailer.createTransport({
   service: 'gmail',
@@ -49,7 +49,7 @@ app.post('/send-email', async (req, res) => {
   // const formData = new FormData({ name, email, mobile, message });
   try {
     // await formData.save();
-    console.log('Form data saved to MongoDB');
+    // console.log('Form data saved to MongoDB');
 
     const mailOptions1 = {
       from: 'lozanosales8@gmail.com',
@@ -64,8 +64,9 @@ app.post('/send-email', async (req, res) => {
         res.status(500).send('Error sending email');
       } else {
         console.log('Email sent:', info.response);
-        res.status(200).send('Form data saved and emails sent successfully');
+       
       }
+        res.status(200).send('Form data saved and emails sent successfully');
     });
   } catch (error) {
     console.error('Error saving form data or sending email:', error);
