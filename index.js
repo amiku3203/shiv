@@ -47,7 +47,7 @@ app.post('/send-email', async (req, res) => {
   const { name, email, mobile, message } = req.body;
 
   // const formData = new FormData({ name, email, mobile, message });
-  try {
+  
     // await formData.save();
     // console.log('Form data saved to MongoDB');
 
@@ -58,21 +58,17 @@ app.post('/send-email', async (req, res) => {
       text: `Successfully Registered\nName: ${name}\nEmail: ${email}\nMobile: ${mobile}\nMessage: ${message}`,
     };
 
-    transporter1.sendMail(mailOptions1, (error, info) => {
-      if (error) {
-        console.error('Error sending email:', error);
-        res.status(500).send('Error sending email');
-      } else {
-        console.log('Email sent:', info.response);
-       
-      }
-        res.status(200).send('Form data saved and emails sent successfully');
-    });
-  } catch (error) {
-    console.error('Error saving form data or sending email:', error);
-    res.status(500).send('Error saving form data or sending email');
-  }
-});
+   try {
+  const info = await transporter1.sendMail(mailOptions1);
+  console.log('Email sent:', info.response);
+  res.status(200).send('Form data saved and emails sent successfully');
+} catch (error) {
+  console.error('Error sending email:', error);
+  res.status(500).send('Error sending email');
+}
+
+   
+})
 
 app.post('/send-email2', async (req, res) => {
   const { name, contact, message } = req.body;
